@@ -1,0 +1,24 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+debianutils is already the newest version (4.9.1).
+diffstat is already the newest version (1.63-1).
+gawk is already the newest version (1:5.0.1+dfsg-1).
+gcc-multilib is already the newest version (4:9.3.0-1ubuntu2).
+iputils-ping is already the newest version (3:20190709-3).
+python3 is already the newest version (3.8.2-0ubuntu2).
+python3-jinja2 is already the newest version (2.10.1-2).
+python3-pexpect is already the newest version (4.6.0-1build1).
+socat is already the newest version (1.7.3.3-2).
+unzip is already the newest version (6.0-25ubuntu1).
+wget is already the newest version (1.20.3-1ubuntu1).
+chrpath is already the newest version (0.16-2).
+libsdl1.2-dev is already the newest version (1.2.15+dfsg2-5).
+python3-git is already the newest version (3.0.7-1).
+texinfo is already the newest version (6.7.0.dfsg.2-5).
+cpio is already the newest version (2.13+dfsg-2ubuntu0.3).
+git is already the newest version (1:2.25.1-1ubuntu3.2).
+libegl1-mesa is already the newest version (21.0.3-0ubuntu0.3~20.04.3).
+python3-pip is already the newest version (20.0.2-5ubuntu1.6).
+xterm is already the newest version (353-1ubuntu1.20.04.2).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
