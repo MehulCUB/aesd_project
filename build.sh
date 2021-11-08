@@ -25,6 +25,16 @@ else
 	echo "${CONFLINE} already exists in the local.conf file"
 fi
 
+# Add firmware aupport
+IMAGE_ADD="IMAGE_INSTALL_append = \"linux-firmware-rpidistro-bcm43430 v4l-utils python3 ntp wpa-supplicant libgpiod libgpiod-tools libgpiod-dev\""
+cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
+local_imgadd_info=$?
+
+# Add ssh support
+IMAGE_F="IMAGE_FEATURES += \"ssh-server-openssh\""
+cat conf/local.conf | grep "${IMAGE_F}" > /dev/null
+local_imgf_info=$?
+
 #bitbake meta layers 
 
 #meta-openembedded layer
@@ -49,6 +59,27 @@ else
 	echo "meta-raspberrypi layer already exists"
 fi
 
+#adding met-python layer
+bitbake-layers show-layers | grep "meta-python" > /dev/null
+layer_info=$?
+
+if [ $layer_info -ne 0 ];then
+	echo "Adding meta-python layer"
+	bitbake-layers add-layer ../meta-openembedded/meta-python
+else
+	echo "meta-python layer already exists"
+fi
+
+#adding meta-networking layer
+bitbake-layers show-layers | grep "meta-networking" > /dev/null
+layer_info=$?
+
+if [ $layer_info -ne 0 ];then
+	echo "Adding meta-networking layer"
+	bitbake-layers add-layer ../meta-openembedded/meta-networking
+else
+	echo "meta-networking layer already exists"
+fi
 
 set -e
 bitbake core-image-base
