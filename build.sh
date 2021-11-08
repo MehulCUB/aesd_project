@@ -17,6 +17,17 @@ CONFLINE="MACHINE = \"raspberrypi4\""
 cat conf/local.conf | grep "${CONFLINE}" > /dev/null
 local_conf_info=$?
 
+# Add Wifi support
+DISTRO_F="DISTRO_FEATURES_append = \"wifi\""
+cat conf/local.conf | grep "${DISTRO_F}" > /dev/null
+local_distro_info=$?
+
+# Add firmware aupport
+IMAGE_ADD="IMAGE_INSTALL_append = \"linux-firmware-rpidistro-bcm43430 v4l-utils python3 ntp wpa-supplicant libgpiod libgpiod-tools libgpiod-dev\""
+cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
+local_imgadd_info=$?
+
+##############################################
 #Add if support is missing in the local.conf file 
 if [ $local_conf_info -ne 0 ];then
 	echo "Append ${CONFLINE} in the local.conf file"
@@ -25,6 +36,38 @@ else
 	echo "${CONFLINE} already exists in the local.conf file"
 fi
 
+if [ $local_distro_info -ne 0 ];then
+        echo "Append ${DISTRO_F} in the local.conf file"
+        echo ${DISTRO_F} >> conf/local.conf
+        
+else
+        echo "${DISTRO_F} already exists in the local.conf file"
+fi
+
+if [ $local_imgadd_info -ne 0 ];then
+        echo "Append ${IMAGE_ADD} in the local.conf file"
+        echo ${IMAGE_ADD} >> conf/local.conf
+        
+else
+        echo "${IMAGE_ADD} already exists in the local.conf file"
+fi
+
+if [ $local_imgf_info -ne 0 ];then
+        echo "Append ${IMAGE_F} in the local.conf file"
+        echo ${IMAGE_F} >> conf/local.conf
+        
+else
+        echo "${IMAGE_F} already exists in the local.conf file"
+fi
+
+if [ $local_coreimadd_info -ne 0 ];then
+        echo "Append ${CORE_IM_ADD} in the local.conf file"
+        echo ${CORE_IM_ADD} >> conf/local.conf
+        
+else
+        echo "${CORE_IM_ADD} already exists in the local.conf file"
+fi
+##############################################
 # Add firmware aupport
 IMAGE_ADD="IMAGE_INSTALL_append = \"linux-firmware-rpidistro-bcm43430 v4l-utils python3 ntp wpa-supplicant libgpiod libgpiod-tools libgpiod-dev\""
 cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
@@ -59,7 +102,7 @@ else
 	echo "meta-raspberrypi layer already exists"
 fi
 
-#adding met-python layer
+#adding meta-python layer
 bitbake-layers show-layers | grep "meta-python" > /dev/null
 layer_info=$?
 
