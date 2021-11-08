@@ -10,8 +10,8 @@ git submodule update
 # local.conf won't exist until this step on first execution
 source poky/oe-init-build-env
 
-#target hardware
-CONFLINE="MACHINE = \"raspberrypi3\""
+#target hardware - rpi4
+CONFLINE="MACHINE = \"raspberrypi4\""
 
 #SSH support
 cat conf/local.conf | grep "${CONFLINE}" > /dev/null
