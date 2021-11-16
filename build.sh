@@ -35,6 +35,11 @@ MODULE_UART="ENABLE_UART = \"1\""
 cat conf/local.conf | grep "${MODULE_UART}" > /dev/null
 local_UART_info=$?
 
+#Add support for I2C module
+MODULE_I2C="ENABLE_I2C = \"1\""
+cat conf/local.conf | grep "${MODULE_I2C}" > /dev/null
+local_i2c_info=$?
+
 ##############################################
 #Add if support is missing in the local.conf file 
 if [ $local_conf_info -ne 0 ];then
@@ -83,6 +88,13 @@ if [ $local_UART_info -ne 0 ];then
         echo ${MODULE_UART} >> conf/local.conf
 else
         echo "${MODULE_UART} already exists in the local.conf file"
+fi
+
+if [ $local_i2c_info -ne 0 ];then
+        echo "Append ${MODULE_I2C} in the local.conf file"
+        echo ${MODULE_I2C} >> conf/local.conf
+else
+        echo "${MODULE_I2C} already exists in the local.conf file"
 fi
 ##############################################
 # Add firmware aupport
