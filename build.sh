@@ -30,6 +30,11 @@ IMAGE_ADD="IMAGE_INSTALL:append = \"linux-firmware-rpidistro-bcm43430 v4l-utils 
 cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
 local_imgadd_info=$?
 
+#add support for UART  
+MODULE_UART="ENABLE_UART = \"1\""
+cat conf/local.conf | grep "${MODULE_UART}" > /dev/null
+local_UART_info=$?
+
 ##############################################
 #Add if support is missing in the local.conf file 
 if [ $local_conf_info -ne 0 ];then
@@ -69,6 +74,15 @@ if [ $local_coreimadd_info -ne 0 ];then
         
 else
         echo "${CORE_IM_ADD} already exists in the local.conf file"
+fi
+
+
+
+if [ $local_UART_info -ne 0 ];then
+        echo "Append ${MODULE_UART} in the local.conf file"
+        echo ${MODULE_UART} >> conf/local.conf
+else
+        echo "${MODULE_UART} already exists in the local.conf file"
 fi
 ##############################################
 # Add firmware aupport
