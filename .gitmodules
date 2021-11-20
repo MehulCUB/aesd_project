@@ -10,3 +10,7 @@
 	url = https://git.openembedded.org/meta-openembedded
 	branch = dunfell
 
+[submodule "meta-raspberrypi"]
+	path = meta-raspberrypi
+	url = https://git.yoctoproject.org/git/meta-raspberrypi
+	branch = dunfell
