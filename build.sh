@@ -153,5 +153,15 @@ else
 	echo "meta-networking layer already exists"
 fi
 
+#adding meta-uarttest layer
+bitbake-layers show-layers | grep "meta-uarttest" > /dev/null
+layer_info=$?
+
+if [ $layer_info -ne 0 ];then
+        echo "Adding meta-uarttest layer"
+        bitbake-layers add-layer ../meta-uarttest
+else
+        echo "meta-uarttest layer already exists"
+fi
 set -e
 bitbake core-image-base
